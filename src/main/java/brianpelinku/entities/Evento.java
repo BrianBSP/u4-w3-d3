@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
+@Table(name = "evento")
 public class Evento {
     @Id
     @GeneratedValue
@@ -17,6 +18,9 @@ public class Evento {
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
     private int numeroMassinoParteciapnti;
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     // costruttori
     public Evento() {

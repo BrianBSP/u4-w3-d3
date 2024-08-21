@@ -13,22 +13,25 @@ public class EventoDAO {
         this.em = em;
     }
 
+    // save
     public void save(Evento evento) {
         try {
             EntityTransaction transaction = em.getTransaction();
             transaction.begin();
             em.persist(evento);
             transaction.commit();
-
+            System.out.println("Evento " + evento.getTitolo() + " creato!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
+    // get by id
     public Evento getById(UUID id) {
         return em.find(Evento.class, id);
     }
 
+    // delete
     public void delete(UUID id) {
         try {
             EntityTransaction transaction = em.getTransaction();

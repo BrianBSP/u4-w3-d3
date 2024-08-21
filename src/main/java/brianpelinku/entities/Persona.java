@@ -4,6 +4,7 @@ import brianpelinku.enums.Sesso;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,10 +16,13 @@ public class Persona {
     private String nome;
     private String cognome;
     private String email;
+    @Column(name = "data_nascita")
     private LocalDate dataNascita;
     @Enumerated(EnumType.STRING)
     private Sesso sesso;
-    // private List<>
+
+    @OneToMany(mappedBy = "persona")
+    private List<Partecipazione> listaPartecipazioni;
 
     // costruttori
     public Persona() {
@@ -75,6 +79,14 @@ public class Persona {
 
     public void setSesso(Sesso sesso) {
         this.sesso = sesso;
+    }
+
+    public List<Partecipazione> getListaPartecipazioni() {
+        return listaPartecipazioni;
+    }
+
+    public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
+        this.listaPartecipazioni = listaPartecipazioni;
     }
 
     @Override
